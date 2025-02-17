@@ -1,0 +1,10 @@
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\bin\Release\Lab10.dacpac
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\bin\Release\Lab10.dll
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\bin\Release\Lab10.pdb
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\obj\Release\Lab10.sqlproj.AssemblyReference.cache
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\obj\Release\Model.xml
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\obj\Release\refactor.xml
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\obj\Release\postdeploy.sql
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\obj\Release\predeploy.sql
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\obj\Release\Lab10.dll
+C:\Users\ascoltat0\Desktop\Lab10\Lab10\obj\Release\Lab10.pdb
