@@ -1,0 +1,49 @@
+--4.	Выполнить 5 запросов к данным в кубе, используя следующие функции языка MDX:
+--4.1.	Числовые;
+--4.2.	Обработки строковых значений;
+--4.3.	Для наборов;
+--4.4.	Для элемента измерения;
+--4.5.	Для иерархий;
+
+--1. Сумма платежей
+SELECT 
+    [Measures].[Rental Price] ON COLUMNS
+FROM [Car Rental DWH];
+
+--2. ФИ клиента
+WITH 
+MEMBER [Measures].[FullName] AS  
+    [Dim Users].[Last Name].CURRENTMEMBER.MEMBER_CAPTION + " " +
+    [Dim Users].[First Name].CURRENTMEMBER.MEMBER_CAPTION
+SELECT 
+    [Measures].[FullName] ON COLUMNS
+FROM [Car Rental DWH]
+WHERE FILTER([Dim Users].[Last Name].MEMBERS * [Dim Users].[First Name].MEMBERS, 
+    [Dim Users].[Last Name].CURRENTMEMBER.MEMBER_CAPTION = 'Ковалев' 
+    AND [Dim Users].[First Name].CURRENTMEMBER.MEMBER_CAPTION = 'Андрей');
+
+--3. Топ-3 самых дорогих авто
+SELECT 
+    TOPCOUNT([Dim Cars].[Model].MEMBERS, 4) ON ROWS,
+    [Measures].[Rental Price] ON COLUMNS
+FROM [Car Rental DWH];
+--Арендованные авто
+SELECT
+	[Measures].[Rental Price] ON COLUMNS,
+    FILTER(
+        [Dim Cars].[Car ID].MEMBERS,
+        [Dim Cars].[Status Name].CURRENTMEMBER.Name = "Rented"
+    ) ON ROWS
+FROM [Car Rental DWH];
+
+--4. Сумма заказов по годам
+SELECT 
+	[Measures].[Fact Orders Count] ON COLUMNS,
+    [Dim Time].[Year].MEMBERS ON ROWS
+FROM [Car Rental DWH];
+
+--5. Доход по годам
+SELECT 
+    [Dim Time].[DateHierarchy].[Year].MEMBERS ON ROWS,
+    [Measures].[Payment Amount] ON COLUMNS
+FROM [Car Rental DWH];
